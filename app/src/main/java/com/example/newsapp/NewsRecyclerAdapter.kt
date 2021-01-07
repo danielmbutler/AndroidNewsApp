@@ -9,9 +9,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.newsapp.models.NewsPost
 import kotlinx.android.synthetic.main.layout_news_list_item.view.*
-import org.json.JSONObject
 
-class NewsRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class NewsRecyclerAdapter (private val listener: OnItemClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var items: List<NewsPost> = ArrayList()
 
@@ -39,15 +38,28 @@ class NewsRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         items = NewsPostList
     }
 
-    class NewsPostViewHolder constructor(
+    inner class NewsPostViewHolder constructor(
         itemView: View
-    ) : RecyclerView.ViewHolder(itemView){
+    ) : RecyclerView.ViewHolder(itemView),
+    View.OnClickListener{
 
         val NewsPost_Title      =   itemView.blog_title
         val NewsPost_Image      =   itemView.blog_image
         val NewsPost_date       =   itemView.blog_date
         val NewsPost_Source     =   itemView.blog_source
         val NewsPost_Author     =   itemView.blog_author
+
+        init{
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if(position != RecyclerView.NO_POSITION){
+                listener.onItemClick(position)
+            }
+
+        }
 
         fun bind(newsPost: NewsPost){
 
@@ -65,7 +77,14 @@ class NewsRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
                 .load(newsPost.image)
                 .into(NewsPost_Image)
 
+
+
+
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(adapterPosition: Int)
     }
 
 }

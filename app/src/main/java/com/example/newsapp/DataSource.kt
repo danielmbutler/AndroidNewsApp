@@ -30,14 +30,17 @@ class DataSource{
                         val date        = data.getString("publishedAt")
                         val sourcename  = source.getString("name")
                         val author      = data.getString("author")
+                        val content   = data.getString("content")
 
                         list.add(
                             NewsPost(
                                 title,
                                 image,
                                 "date: ${date.replace("T"," ").replace("Z","")}",
+                                content,
                                 sourcename,
                                 "author: $author"
+
                             )
                         )
                     }
