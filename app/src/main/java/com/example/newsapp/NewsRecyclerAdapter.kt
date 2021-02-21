@@ -4,6 +4,7 @@ package com.example.newsapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -30,6 +31,10 @@ class NewsRecyclerAdapter (private val listener: OnItemClickListener): RecyclerV
         when(holder){
             is NewsPostViewHolder -> {
                 holder.bind(items.get(position))
+                holder.itemView.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.slidein)
+
+//                shopDetailParent.animation =
+//
             }
         }
     }
