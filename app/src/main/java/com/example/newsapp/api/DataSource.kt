@@ -1,4 +1,4 @@
-package com.example.newsapp
+package com.example.newsapp.api
 
 import android.util.Log
 import com.example.newsapp.models.NewsPost

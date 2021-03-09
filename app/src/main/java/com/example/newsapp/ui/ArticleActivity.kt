@@ -1,10 +1,11 @@
-package com.example.newsapp
+package com.example.newsapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.newsapp.R
 import kotlinx.android.synthetic.main.activity_article.*
 
 class ArticleActivity : AppCompatActivity() {
